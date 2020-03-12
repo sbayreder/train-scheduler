@@ -1,0 +1,41 @@
+.jumbotron {
+  margin-left: 100px;
+  background-color: tomato;
+}
+
+.card {
+  margin-left: 100px;
+}
+
+#button {
+  background-color: rgb(42, 145, 241);
+  color: white;
+  border-radius: 40px;
+}
+
+#searchbar {
+  width: 100%;
+}
+
+#cardHead {
+  background-color: teal;
+  color: white;
+}
+
+#jumbo {
+  margin-left: 100px;
+  font-weight: bold;
+  font-size: 90px;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+}
+
+#jumbo2 {
+  margin-left: 350px;
+  font-weight: bold;
+  font-size: 60px;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+}
+
+#jTron {
+  background-color: tomato;
+}
