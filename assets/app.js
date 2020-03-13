@@ -14,10 +14,10 @@ var database = firebase.database();
 
 
 
-var tFrequency = "";
+var tFrequency = 3;
 
 // needs to be altered from text box
-var firstTime = "";
+var firstTime = "03:00";
 
 var firstTimeConverted = moment(firstTime, "HH:mm").subtract(1, "years");
 console.log(firstTimeConverted);
@@ -34,18 +34,18 @@ console.log(tRemainder);
 
 //minutes away
 var tMinutesTillTrain = tFrequency - tRemainder;
-$('#minAway').text("MINUTES TILL TRAIN: " + tMinutesTillTrain);
+$("#minAway").text(tMinutesTillTrain);
 
 //next arrival
 var nextTrain = moment().add(tMinutesTillTrain, "minutes");
-$("#nextArrival").text("ARRIVAL TIME: " + moment(nextTrain).format("hh:mm"));
+$("#nextArrival").text( moment(nextTrain).format("hh:mm"));
 
 
 //train name to html from text box
 var input = $("#trainName")
 
 //destination to html from text box
-var input2 = $('#desti')
+
 
 //submit button
 $('#button').on('click', function(event){
@@ -61,9 +61,9 @@ minutesAway = $("#minAway").val().trim();
 
 //code for the push
 database.ref().push({
-    tName: tName,
+   tName: tName,
     destination: destination,
     frequency: frequency,
     nextArrival: nextArrival,
-    minutesAway: firebase.database.ServerValue.TIMESTAMP
+   minutesAway: firebase.database.ServerValue.TIMESTAMP
   });

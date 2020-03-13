@@ -9,8 +9,6 @@
   <!--bootstrap link-->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
     integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
-  <!--This is firebase link-->
-    <script src="https://www.gstatic.com/firebasejs/7.10.0/firebase-app.js"></script>
   
   <title>Train Schedule</title>
 </head>
@@ -34,28 +32,24 @@
     <table>
       <thead>
         <tr>
-          <th>Train Name</th>
-          <th>Destination</th>
-          <th>Frequency (min)</th>
-          <th>Next Arrival</th>
-          <th>Minutes Away</th>
+          <th scope="col">Train Name</th>
+          <th scope="col">Destination</th>
+          <th scope="col">Frequency (min)</th>
+          <th scope="col">Next Arrival</th>
+          <th scope="col">Minutes Away</th>
         </tr>
       </thead>
       <tbody>
-        <tr id="trainName">
-          <td></td>
-        </tr>
-        <tr id="desti">
-          <td></td>
-        </tr>
-        <tr id="freq">
-          <td></td>
-        </tr>
-        <tr >
+        <tr>
+          <td id="trainName"></td>
+                
+          <td id="desti"></td>
+                
+          <td id="freq"></td>
+                
           <td id="nextArrival"></td>
-        </tr>
-        <tr id="minAway">
-          <td></td>
+                
+          <td id="minAway"></td>
         </tr>
       </tbody>
     </table>
@@ -95,6 +89,11 @@
     </ul>
   </div>
 
+  <!--moment.js link-->
+  <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+  <!--This is firebase link-->
+  <script src="https://www.gstatic.com/firebasejs/7.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.10.0/firebase-database.js"></script>
   <!--jQuery link-->
   <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
     integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
@@ -106,9 +105,7 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
     integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
     crossorigin="anonymous"></script>
-  <!--moment.js link-->
-  <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
-  <!--link to .js-->
+    <!--link to .js-->
     <script src="assets\app.js"></script>
 </body>
 
