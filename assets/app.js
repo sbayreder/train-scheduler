@@ -20,17 +20,17 @@ var tFrequency = 3;
 var firstTime = "03:00";
 
 var firstTimeConverted = moment(firstTime, "HH:mm").subtract(1, "years");
-console.log(firstTimeConverted);
+
 
 var currentTime = moment();
-console.log("CURRENT TIME: " + moment(currentTime).format("hh:mm"));
+
 
 var diffTime = moment().diff(moment(firstTimeConverted), "minutes");
-console.log("DIFFERENCE IN TIME: " + diffTime);
+
 
 //frequency get tFrequency from txt box
 var tRemainder = diffTime % tFrequency;
-console.log(tRemainder);
+
 
 //minutes away
 var tMinutesTillTrain = tFrequency - tRemainder;
@@ -44,26 +44,46 @@ $("#nextArrival").text( moment(nextTrain).format("hh:mm"));
 //train name to html from text box
 var input = $("#trainName")
 
-//destination to html from text box
+
 
 
 //submit button
 $('#button').on('click', function(event){
     event.preventDefault();
-});
+
 
 //from text box
-tName = $("#trainName").val().trim();
-destination = $("#desti").val().trim();
-frequency = $("#freq").val().trim();
-nextArrival = $("#nextArrival").val().trim();
+tName = $("#tBar").val().trim();
+destination = $("#dBar").val().trim();
+tFrequency = $("#fBar").val().trim();
+nextArrival = $("#ftBar").val().trim();
 minutesAway = $("#minAway").val().trim();
 
 //code for the push
 database.ref().push({
    tName: tName,
     destination: destination,
-    frequency: frequency,
+    tFrequency: tFrequency,
     nextArrival: nextArrival,
+
+    //fix this
    minutesAway: firebase.database.ServerValue.TIMESTAMP
   });
+
+  database.ref().on("value", function(snapshot) {
+    
+    var sv = snapshot.val();
+
+    
+   
+    // Change the HTML to reflect
+    $("#trainName").text(tName);
+    $("#desti").text(destination);
+    $("#freq").text(tFrequency);
+    $("#nextArrival").text(nextArrival);
+
+    // Handle the errors
+  }, function(errorObject) {
+    console.log("Errors handled: " + errorObject.code);
+  });
+});
