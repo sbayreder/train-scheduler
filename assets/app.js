@@ -14,15 +14,24 @@ var database = firebase.database();
 
 
 
-var tFrequency = 3;
+
+
+
+
+
+//submit button
+$('#button').on('click', function(event){
+    event.preventDefault();
+
+    var tFrequency = $("#fBar").val().trim(); 
 
 // needs to be altered from text box
-var firstTime = "03:00";
+var  nextArrival = $("#ftBar").val().trim();
 
-var firstTimeConverted = moment(firstTime, "HH:mm").subtract(1, "years");
+var firstTimeConverted = moment(nextArrival, "HH:mm");
 
 
-var currentTime = moment();
+
 
 
 var diffTime = moment().diff(moment(firstTimeConverted), "minutes");
@@ -33,31 +42,17 @@ var tRemainder = diffTime % tFrequency;
 
 
 //minutes away
-var tMinutesTillTrain = tFrequency - tRemainder;
-$("#minAway").text(tMinutesTillTrain);
-
-//next arrival
-var nextTrain = moment().add(tMinutesTillTrain, "minutes");
-$("#nextArrival").text( moment(nextTrain).format("hh:mm"));
-
-
-//train name to html from text box
-var input = $("#trainName")
+var minutesAway = tFrequency - tRemainder;
 
 
 
-
-//submit button
-$('#button').on('click', function(event){
-    event.preventDefault();
 
 
 //from text box
-tName = $("#tBar").val().trim();
-destination = $("#dBar").val().trim();
-tFrequency = $("#fBar").val().trim();
-nextArrival = $("#ftBar").val().trim();
-minutesAway = $("#minAway").val().trim();
+var tName = $("#tBar").val().trim();
+var destination = $("#dBar").val().trim();
+
+
 
 //code for the push
 database.ref().push({
@@ -66,24 +61,37 @@ database.ref().push({
     tFrequency: tFrequency,
     nextArrival: nextArrival,
 
-    //fix this
-   minutesAway: firebase.database.ServerValue.TIMESTAMP
-  });
-
-  database.ref().on("value", function(snapshot) {
     
-    var sv = snapshot.val();
+   minutesAway: minutesAway
+  });
+});
+  database.ref().on("value", function(snapshot) {
+   //check anytime an entry goes to firebase. (timer every min (for miutesAway)) 
+    
+    snapshot.forEach((train) => {
+
+      var tableRow = $('<tr></tr>');
+      
+         
+        
+      var sv = train.val();
+      $("<td></td>").text(sv.tName).appendTo(tableRow);
+      $("<td></td>").text(sv.destination).appendTo(tableRow);
+      $("<td></td>").text(sv.tFrequency).appendTo(tableRow);
+      $("<td></td>").text(sv.nextArrival).appendTo(tableRow);
+      $("<td></td>").text(sv.minutesAway).appendTo(tableRow); 
+
+      $('tbody').append(tableRow);
+      
+      
+    });
 
     
    
     // Change the HTML to reflect
-    $("#trainName").text(tName);
-    $("#desti").text(destination);
-    $("#freq").text(tFrequency);
-    $("#nextArrival").text(nextArrival);
+    
 
     // Handle the errors
   }, function(errorObject) {
     console.log("Errors handled: " + errorObject.code);
   });
-});

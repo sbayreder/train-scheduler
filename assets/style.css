@@ -1,6 +1,6 @@
 .jumbotron {
   margin-left: 100px;
-  background-color: tomato;
+  background-image: url(https://cdn.pixabay.com/photo/2016/07/29/19/19/gleise-1555348__340.jpg);
 }
 
 .card {
@@ -27,6 +27,7 @@
   font-weight: bold;
   font-size: 90px;
   font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  color: white;
 }
 
 #jumbo2 {
@@ -34,6 +35,7 @@
   font-weight: bold;
   font-size: 60px;
   font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  color: white;
 }
 
 #jTron {
